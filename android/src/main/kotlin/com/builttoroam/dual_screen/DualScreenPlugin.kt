@@ -57,11 +57,7 @@ public class DualScreenPlugin :
                 result.success(isDualScreenDevice())
             }
             IS_APP_SPANNED -> {
-                if (isDualScreenDevice()) {
-                    result.success(isAppSpanned())
-                } else {
-                    result.success(false)
-                }
+                result.success(isAppSpanned())
             }
             else -> {
                 result.notImplemented()
