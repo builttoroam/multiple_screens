@@ -22,9 +22,9 @@ stages:
   # ----------- CI -----------
   - stage: Build
     jobs: 
-     - job: BuildAndroidAndIos
+     - job: BuildAndroid
        pool:
-        vmImage: 'macOS-latest'
+        vmImage: 'windows-latest'
        steps:
         - task: FlutterInstall@0
           displayName: 'Flutter install'
@@ -37,13 +37,6 @@ stages:
           inputs:
             target: 'aab'
             projectDirectory: 'example'
-
-        - task: FlutterBuild@0
-          displayName: 'Flutter build - iOS'
-          inputs:
-            target: 'ios'
-            projectDirectory: 'example'
-            iosCodesign: false
             
   # -----------CD Pre-release -----------
   - stage: DevelopmentRelease
