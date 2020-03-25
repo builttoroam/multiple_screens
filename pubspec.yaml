@@ -2,7 +2,7 @@ name: dual_screen
 description:
   Flutter plugin for determing whether the device supports dual screen and
   whether the app is currently spanned across both screen.
-version: 1.0.0
+version: 0.1.0
 homepage: https://github.com/builttoroam/dual_screen
 
 environment:
