@@ -85,6 +85,23 @@ stages:
 
               $newChangelogContent | Set-Content -Path "$(Build.SourcesDirectory)/CHANGELOG.md"
 
+        - task: PowerShell@2
+          displayName: 'Create publisher credentials file'
+          inputs:
+            targetType: 'inline'
+            script: |
+              cd $(FlutterToolPath)
+              cd..
+              cd .pub-cache/
+
+              $credentials = @{
+                accessToken = "$(ACCESS_TOKEN)"
+                refreshToken = "$(REFRESH_TOKEN)"
+                tokenEndpoint = "$(TOKEN_ENDPOINT)"
+                scopes = @("https://www.googleapis.com/auth/userinfo.email","openid")
+                expiration = $(EXPIRATION)
+              } | ConvertTo-Json | Out-File -FilePath .\credentials.json -Encoding UTF8
+
         - task: CmdLine@2
           displayName: 'Dry run publish'
           inputs:
@@ -130,6 +147,23 @@ stages:
               
               Write-Host "##vso[task.setvariable variable=versionSummary]$summary"
 
+        - task: PowerShell@2
+          displayName: 'Create publisher credentials file'
+          inputs:
+            targetType: 'inline'
+            script: |
+              cd $(FlutterToolPath)
+              cd..
+              cd .pub-cache/
+
+              $credentials = @{
+                accessToken = "$(ACCESS_TOKEN)"
+                refreshToken = "$(REFRESH_TOKEN)"
+                tokenEndpoint = "$(TOKEN_ENDPOINT)"
+                scopes = @("https://www.googleapis.com/auth/userinfo.email","openid")
+                expiration = $(EXPIRATION)
+              } | ConvertTo-Json | Out-File -FilePath .\credentials.json -Encoding UTF8
+              
         - task: CmdLine@2
           displayName: 'Dry run publish'
           inputs:
