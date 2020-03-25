@@ -1,0 +1,25 @@
+name: dual_screen
+description:
+  Flutter plugin for determing whether the device supports dual screen and
+  whether the app is currently spanned across both screen.
+version: 1.0.0
+homepage: https://github.com/builttoroam/dual_screen
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+  flutter: ">=1.12.13 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.builttoroam.dual_screen
+        pluginClass: DualScreenPlugin
