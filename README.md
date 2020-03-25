@@ -16,7 +16,7 @@ Determine whether the app is currently spanned across both screens
 
 Subscribing to app spanned across both screen stream
 
-```
+```dart
 DualScreen.isAppSpannedStream().listen(
   (data) => setState(() => _isAppSpannedStream = data)
 );
@@ -24,7 +24,7 @@ DualScreen.isAppSpannedStream().listen(
 
 Using the DualScreenScaffold widget
 
-```
+```dart
 DualScreenScaffold(
   //Must supply whether the app is spanned
   //This can be the result of the app spanned stream

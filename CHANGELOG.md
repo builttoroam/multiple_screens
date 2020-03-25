@@ -1,3 +1,5 @@
+# Changelog
+
 ## 1.0.0
 
 * A new DualScreenScaffold widget which allows either multiple scaffolds or other widgets to be supplied to be shown on each screen
