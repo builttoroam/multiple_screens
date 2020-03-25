@@ -134,7 +134,7 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              [string] $version = select-string -path "$(Build.SourcesDirectory)/pubspec.yaml" -pattern $(versionNumberRegex) | %{ $_.Matches[0].Value }
+              [string] $version = select-string -path "$(Build.SourcesDirectory)/pubspec.yaml" -pattern "$(versionNumberRegex)" | %{ $_.Matches[0].Value }
               
               Write-Host "##vso[task.setvariable variable=currentVersion]$version"
 
