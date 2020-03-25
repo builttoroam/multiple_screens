@@ -1,5 +1,5 @@
-name: dual_screen_example
-description: Demonstrates how to use the dual_screen plugin.
+name: multi_screen_example
+description: Demonstrates how to use the multi_screen plugin.
 publish_to: 'none'
 
 environment:
@@ -17,7 +17,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  dual_screen:
+  multi_screen:
     path: ../
 
 # For information on the generic Dart part of this file, see the
