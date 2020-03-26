@@ -1,15 +1,15 @@
-#import "MultiScreenPlugin.h"
-#if __has_include(<multi_screen/multi_screen-Swift.h>)
-#import <multi_screen/multi_screen-Swift.h>
+#import "MultipleScreensPlugin.h"
+#if __has_include(<multiple_screens/multiple_screens-Swift.h>)
+#import <multiple_screens/multiple_screens-Swift.h>
 #else
 // Support project import fallback if the generated compatibility header
 // is not copied when this plugin is created as a library.
 // https://forums.swift.org/t/swift-static-libraries-dont-copy-generated-objective-c-header/19816
-#import "multi_screen-Swift.h"
+#import "multiple_screens-Swift.h"
 #endif
 
-@implementation MultiScreenPlugin
+@implementation MultipleScreensPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftMultiScreenPlugin registerWithRegistrar:registrar];
+  [SwiftpleScreensPlugin registerWithRegistrar:registrar];
 }
 @end
