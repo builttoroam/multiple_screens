@@ -1,33 +1,33 @@
-# multi_screen
+# multiple_screens
 
-[![pub package](https://img.shields.io/pub/v/multi_screen.svg)](https://pub.dartlang.org/packages/multi_screen) [![Build Status](https://dev.azure.com/builttoroam/Flutter%20Plugins/_apis/build/status/Multi%20Screen)](https://dev.azure.com/builttoroam/Flutter%20Plugins/_build/latest?definitionId=109)
+[![pub package](https://img.shields.io/pub/v/multiple_screens.svg)](https://pub.dartlang.org/packages/multiple_screens) [![Build Status](https://dev.azure.com/builttoroam/Flutter%20Plugins/_apis/build/status/Multiple%20Screens)](https://dev.azure.com/builttoroam/Flutter%20Plugins/_build/latest?definitionId=109)
 
-A Flutter plugin to determine whether the device supports multi screen and whether the app is currently spanned across both screen.
+A Flutter plugin to determine whether the device supports multiple screens and whether the app is currently spanned across both screen.
 
 ## Usage
 
-```import 'package:multi_screen/multi_screen.dart';```
+```import 'package:multiple_screens/multiple_screens.dart';```
 
-Determine whether the app is run on a multi screen device
+Determine whether the app is run on a multiple screen device
 
-```bool isMultiDevice = await MultiScreen.isMultiScreenDevice;```
+```bool isMultipleDevice = await MultipleScreens.isMultipleScreensDevice;```
 
 Determine whether the app is currently spanned across both screens
 
-```bool isAppSpanned = await MultiScreen.isAppSpanned;```
+```bool isAppSpanned = await MultipleScreens.isAppSpanned;```
 
 Subscribing to app spanned across both screen stream
 
 ```dart
-MultiScreen.isAppSpannedStream().listen(
+MultipleScreens.isAppSpannedStream().listen(
   (data) => setState(() => _isAppSpannedStream = data)
 );
 ```
 
-Using the MultiScreenScaffold widget
+Using the MultipleScreensScaffold widget
 
 ```dart
-MultiScreenScaffold(
+MultipleScreensScaffold(
   //Must supply whether the app is spanned
   //This can be the result of the app spanned stream
   appSpanned

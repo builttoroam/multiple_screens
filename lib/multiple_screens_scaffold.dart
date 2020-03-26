@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-/// A widget similar to Scaffold which supports multi screens
-class MultiScreenScaffold extends StatefulWidget {
+/// A widget similar to Scaffold which supports multiple screens
+class MultipleScreensScaffold extends StatefulWidget {
   final PreferredSizeWidget appBar;
   final bool appSpanned;
   final Color backgroundColor;
@@ -27,7 +27,7 @@ class MultiScreenScaffold extends StatefulWidget {
   final bool resizeToAvoidBottomInset;
   final Widget right;
 
-  const MultiScreenScaffold({
+  const MultipleScreensScaffold({
     Key key,
     this.appBar,
     this.appSpanned,
@@ -58,10 +58,10 @@ class MultiScreenScaffold extends StatefulWidget {
         super(key: key);
 
   @override
-  _MultiScreenScaffoldState createState() => _MultiScreenScaffoldState();
+  _MultipleScreensScaffoldState createState() => _MultipleScreensScaffoldState();
 }
 
-class _MultiScreenScaffoldState extends State<MultiScreenScaffold> {
+class _MultipleScreensScaffoldState extends State<MultipleScreensScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
