@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint multi_screen.podspec' to validate before publishing.
+# Run `pod lib lint multiple_screens.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'multi_screen'
+  s.name             = 'multiple_screens'
   s.version          = '0.0.1'
   s.summary          = 'A new flutter plugin project.'
   s.description      = <<-DESC

@@ -1,6 +1,6 @@
-# multi_screen_example
+# multiple_screens_example
 
-Demonstrates how to use the multi_screen plugin.
+Demonstrates how to use the multiple_screens plugin.
 
 ## Getting Started
 

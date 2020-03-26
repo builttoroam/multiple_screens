@@ -1,4 +1,4 @@
-package com.builttoroam.multi_screen_example
+package com.builttoroam.multiple_screens_example
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
