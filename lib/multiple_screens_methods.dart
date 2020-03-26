@@ -2,16 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-/// The entry point for accessing dual screen methods
-class DualScreenMethods {
+/// The entry point for accessing multiple screens methods
+class MultipleScreensMethods {
   static const MethodChannel _methodChannel =
-      const MethodChannel('plugins.builttoroam.com/dual_screen/methods');
+      const MethodChannel('plugins.builttoroam.com/multiple_screens/methods');
   static const EventChannel _eventChannel =
-      const EventChannel('plugins.builttoroam.com/dual_screen/events');
+      const EventChannel('plugins.builttoroam.com/multiple_screens/events');
 
-  /// Returns whether the device supports dual screen
-  static Future<bool> get isDualScreenDevice async =>
-      await _methodChannel.invokeMethod('isDualScreenDevice');
+  /// Returns whether the device supports multi screen
+  static Future<bool> get isMultipleScreensDevice async =>
+      await _methodChannel.invokeMethod('isMultipleScreensDevice');
 
   /// Returns whether the app is spanned across both screens
   static Future<bool> get isAppSpanned async =>

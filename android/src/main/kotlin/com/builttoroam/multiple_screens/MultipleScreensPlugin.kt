@@ -1,4 +1,4 @@
-package com.builttoroam.dual_screen
+package com.builttoroam.multiple_screens
 
 import android.app.Activity
 import android.content.Context
@@ -18,16 +18,16 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-/** DualScreenPlugin */
-public class DualScreenPlugin :
+/** MultipleScreensPlugin */
+public class MultipleScreensPlugin :
     FlutterPlugin,
     MethodCallHandler,
     EventChannel.StreamHandler,
     ActivityAware {
-    private val METHOD_CHANNEL_NAME = "plugins.builttoroam.com/dual_screen/methods"
-    private val EVENT_CHANNEL_NAME = "plugins.builttoroam.com/dual_screen/events"
+    private val METHOD_CHANNEL_NAME = "plugins.builttoroam.com/multiple_screens/methods"
+    private val EVENT_CHANNEL_NAME = "plugins.builttoroam.com/multiple_screens/events"
     private val DISPLAY_MASK_SYSTEM_FEATURE = "com.microsoft.device.display.displaymask"
-    private val IS_DUAL_SCREEN_DEVICE = "isDualScreenDevice"
+    private val IS_MULTIPLE_SCREENS_DEVICE = "isMultipleScreensDevice"
     private val IS_APP_SPANNED = "isAppSpanned"
     private lateinit var methodChannel: MethodChannel
     private lateinit var eventChannel: EventChannel
@@ -47,14 +47,14 @@ public class DualScreenPlugin :
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
-            DualScreenPlugin().registerPlugin(registrar.context(), registrar.messenger())
+            MultipleScreensPlugin().registerPlugin(registrar.context(), registrar.messenger())
         }
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         when (call.method) {
-            IS_DUAL_SCREEN_DEVICE -> {
-                result.success(isDualScreenDevice())
+            IS_MULTIPLE_SCREENS_DEVICE -> {
+                result.success(isMultipleScreensDevice())
             }
             IS_APP_SPANNED -> {
                 result.success(isAppSpanned())
@@ -102,7 +102,7 @@ public class DualScreenPlugin :
         activity = null
     }
 
-    fun isDualScreenDevice(): Boolean {
+    fun isMultipleScreensDevice(): Boolean {
         val packageManager = context?.getPackageManager()
         if (packageManager != null) {
             return packageManager.hasSystemFeature(
@@ -113,7 +113,7 @@ public class DualScreenPlugin :
     }
 
     fun isAppSpanned(): Boolean {
-        if (isDualScreenDevice()) {
+        if (isMultipleScreensDevice()) {
             var boundings = DisplayMask.fromResourcesRectApproximation(activity).getBoundingRects()
             if (boundings.isEmpty()) {
                 return false

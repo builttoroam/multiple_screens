@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftDualScreenPlugin: NSObject, FlutterPlugin {
+public class SwiftMultipleScreensPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "dual_screen", binaryMessenger: registrar.messenger())
-    let instance = SwiftDualScreenPlugin()
+    let channel = FlutterMethodChannel(name: "multiple_screens", binaryMessenger: registrar.messenger())
+    let instance = SwiftMultipleScreensPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

@@ -1,4 +1,4 @@
-group 'com.builttoroam.dual_screen'
+group 'com.builttoroam.multiple_screens'
 version '1.0-SNAPSHOT'
 
 buildscript {

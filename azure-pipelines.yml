@@ -181,7 +181,7 @@ stages:
           inputs:
             githubEndpoint: 'GitHub Tagging'
             manuallySetRepository: false
-            githubRepository: 'builttoroam/dual_screen'
+            githubRepository: 'builttoroam/multiple_screens'
             githubTag: 'v$(currentVersion)'
             githubReleaseTitle: '$(versionSummary)'
             githubReleaseDraft: false
