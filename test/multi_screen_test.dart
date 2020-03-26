@@ -1,9 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dual_screen/dual_screen.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('dual_screen');
+  const MethodChannel channel = MethodChannel('multi_screen');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
