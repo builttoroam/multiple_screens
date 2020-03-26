@@ -5,7 +5,7 @@ import 'package:multiple_screens/multiple_screens.dart';
 
 void main() => runApp(
       MaterialApp(
-        title: 'Mutiple Screens',
+        title: 'Multiple Screens',
         home: HomeScreen(),
       ),
     );
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: Text('Mutiple Screens example'),
+            title: Text('Multiple Screens example'),
           ),
           body: Center(
             child: Column(
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MutipleScreensMethodsScreen(),
+                      builder: (context) => MultipleScreensMethodsScreen(),
                     ),
                   ),
                 ),
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MutipleScreensScaffoldScreen(),
+                      builder: (context) => MultipleScreensScaffoldScreen(),
                     ),
                   ),
                 ),
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MutipleScreensScaffoldBodyScreen(),
+                      builder: (context) => MultipleScreensScaffoldBodyScreen(),
                     ),
                   ),
                 ),
@@ -81,17 +81,17 @@ class _DragDropScreenState extends State<DragDropScreen> {
   @override
   void initState() {
     super.initState();
-    MutipleScreensMethods.isAppSpannedStream().listen(
+    MultipleScreensMethods.isAppSpannedStream().listen(
       (data) => setState(() => _isAppSpannedStream = data),
     );
   }
 
   @override
-  Widget build(BuildContext context) => MutipleScreensScaffold(
+  Widget build(BuildContext context) => MultipleScreensScaffold(
         appSpanned: _isAppSpannedStream,
         left: Scaffold(
           appBar: AppBar(
-            title: Text('Mutiple Screens drag and drop example'),
+            title: Text('Multiple Screens drag and drop example'),
           ),
           body: Center(
             child: Container(
@@ -159,61 +159,61 @@ class _DragDropScreenState extends State<DragDropScreen> {
       );
 }
 
-class MutipleScreensMethodsScreen extends StatefulWidget {
+class MultipleScreensMethodsScreen extends StatefulWidget {
   final bool isAppSpannedStream;
 
-  const MutipleScreensMethodsScreen({
+  const MultipleScreensMethodsScreen({
     Key key,
     this.isAppSpannedStream,
   }) : super(key: key);
 
   @override
-  _MutipleScreensMethodsScreenState createState() =>
-      _MutipleScreensMethodsScreenState();
+  _MultipleScreensMethodsScreenState createState() =>
+      _MultipleScreensMethodsScreenState();
 }
 
-class _MutipleScreensMethodsScreenState extends State<MutipleScreensMethodsScreen> {
-  bool _isMutipleScreensDevice;
+class _MultipleScreensMethodsScreenState extends State<MultipleScreensMethodsScreen> {
+  bool _isMultipleScreensDevice;
   bool _isAppSpanned;
   bool _isAppSpannedStream = false;
 
   @override
   void initState() {
     super.initState();
-    MutipleScreensMethods.isAppSpannedStream().listen(
+    MultipleScreensMethods.isAppSpannedStream().listen(
       (data) => setState(() => _isAppSpannedStream = data),
     );
   }
 
-  Future<void> _updateMutipleScreensInfo() async {
-    bool isMultiDevice = await MutipleScreensMethods.isMutipleScreensDevice;
-    bool isAppSpanned = await MutipleScreensMethods.isAppSpanned;
+  Future<void> _updateMultipleScreensInfo() async {
+    bool isMultiDevice = await MultipleScreensMethods.isMultipleScreensDevice;
+    bool isAppSpanned = await MultipleScreensMethods.isAppSpanned;
 
     if (!mounted) return;
 
   setState(() {
-      _isMutipleScreensDevice = isMultiDevice;
+      _isMultipleScreensDevice = isMultiDevice;
       _isAppSpanned = isAppSpanned;
     });
   }
 
   @override
-  Widget build(BuildContext context) => MutipleScreensScaffold(
+  Widget build(BuildContext context) => MultipleScreensScaffold(
         appSpanned: _isAppSpannedStream,
         appBar: AppBar(
-          title: Text('Mutiple Screens example'),
+          title: Text('Multiple Screens example'),
         ),
         left: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Multi device: ${_isMutipleScreensDevice ?? 'Unknown'}'),
+              Text('Multi device: ${_isMultipleScreensDevice ?? 'Unknown'}'),
               SizedBox(height: 8),
               Text('App spanned: ${_isAppSpanned ?? 'Unknown'}'),
               SizedBox(height: 8),
               RaisedButton(
                 child: Text('Manually determine multi device and app spanned'),
-                onPressed: () => _updateMutipleScreensInfo(),
+                onPressed: () => _updateMultipleScreensInfo(),
               ),
               SizedBox(height: 64),
               Text(
@@ -233,47 +233,47 @@ class _MutipleScreensMethodsScreenState extends State<MutipleScreensMethodsScree
       );
 }
 
-class MutipleScreensScaffoldScreen extends StatefulWidget {
+class MultipleScreensScaffoldScreen extends StatefulWidget {
   final bool isAppSpannedStream;
 
-  const MutipleScreensScaffoldScreen({
+  const MultipleScreensScaffoldScreen({
     Key key,
     this.isAppSpannedStream,
   }) : super(key: key);
 
   @override
-  _MutipleScreensScaffoldScreenState createState() =>
-      _MutipleScreensScaffoldScreenState();
+  _MultipleScreensScaffoldScreenState createState() =>
+      _MultipleScreensScaffoldScreenState();
 }
 
-class _MutipleScreensScaffoldScreenState extends State<MutipleScreensScaffoldScreen> {
+class _MultipleScreensScaffoldScreenState extends State<MultipleScreensScaffoldScreen> {
   bool _isAppSpannedStream = false;
 
   @override
   void initState() {
     super.initState();
-    MutipleScreensMethods.isAppSpannedStream().listen(
+    MultipleScreensMethods.isAppSpannedStream().listen(
       (data) => setState(() => _isAppSpannedStream = data),
     );
   }
 
   @override
-  Widget build(BuildContext context) => MutipleScreensScaffold(
+  Widget build(BuildContext context) => MultipleScreensScaffold(
         appSpanned: _isAppSpannedStream,
-        left: MutipleScreensScaffoldScreenNavigationExampleFirstScreen(),
-        right: MutipleScreensScaffoldScreenNavigationExampleSecondScreen(),
+        left: MultipleScreensScaffoldScreenNavigationExampleFirstScreen(),
+        right: MultipleScreensScaffoldScreenNavigationExampleSecondScreen(),
       );
 }
 
-class MutipleScreensScaffoldScreenNavigationExampleFirstScreen
+class MultipleScreensScaffoldScreenNavigationExampleFirstScreen
     extends StatefulWidget {
   @override
-  _MutipleScreensScaffoldScreenNavigationExampleFirstScreenState createState() =>
-      _MutipleScreensScaffoldScreenNavigationExampleFirstScreenState();
+  _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState createState() =>
+      _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState();
 }
 
-class _MutipleScreensScaffoldScreenNavigationExampleFirstScreenState
-    extends State<MutipleScreensScaffoldScreenNavigationExampleFirstScreen> {
+class _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState
+    extends State<MultipleScreensScaffoldScreenNavigationExampleFirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -293,15 +293,15 @@ class _MutipleScreensScaffoldScreenNavigationExampleFirstScreenState
   }
 }
 
-class MutipleScreensScaffoldScreenNavigationExampleSecondScreen
+class MultipleScreensScaffoldScreenNavigationExampleSecondScreen
     extends StatefulWidget {
   @override
-  _MutipleScreensScaffoldScreenNavigationExampleSecondScreenState createState() =>
-      _MutipleScreensScaffoldScreenNavigationExampleSecondScreenState();
+  _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState createState() =>
+      _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState();
 }
 
-class _MutipleScreensScaffoldScreenNavigationExampleSecondScreenState
-    extends State<MutipleScreensScaffoldScreenNavigationExampleSecondScreen> {
+class _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState
+    extends State<MultipleScreensScaffoldScreenNavigationExampleSecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -321,36 +321,36 @@ class _MutipleScreensScaffoldScreenNavigationExampleSecondScreenState
   }
 }
 
-class MutipleScreensScaffoldBodyScreen extends StatefulWidget {
+class MultipleScreensScaffoldBodyScreen extends StatefulWidget {
   final bool isAppSpannedStream;
 
-  const MutipleScreensScaffoldBodyScreen({
+  const MultipleScreensScaffoldBodyScreen({
     Key key,
     this.isAppSpannedStream,
   }) : super(key: key);
   @override
-  _MutipleScreensScaffoldBodyScreenState createState() =>
-      _MutipleScreensScaffoldBodyScreenState();
+  _MultipleScreensScaffoldBodyScreenState createState() =>
+      _MultipleScreensScaffoldBodyScreenState();
 }
 
-class _MutipleScreensScaffoldBodyScreenState
-    extends State<MutipleScreensScaffoldBodyScreen> {
+class _MultipleScreensScaffoldBodyScreenState
+    extends State<MultipleScreensScaffoldBodyScreen> {
   bool _isAppSpannedStream = false;
 
   @override
   void initState() {
     super.initState();
-    MutipleScreensMethods.isAppSpannedStream().listen(
+    MultipleScreensMethods.isAppSpannedStream().listen(
       (data) => setState(() => _isAppSpannedStream = data),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return MutipleScreensScaffold(
+    return MultipleScreensScaffold(
       appSpanned: _isAppSpannedStream,
       appBar: AppBar(
-        title: Text('Mutiple Screens scaffold using body example'),
+        title: Text('Multiple Screens scaffold using body example'),
       ),
       body: Center(
         child: Text('Example text'),
