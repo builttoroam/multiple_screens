@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 RaisedButton(
-                  child: Text('Multi screen methods example'),
+                  child: Text('Multiple screen methods example'),
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 RaisedButton(
-                  child: Text('Multi screen scaffold example'),
+                  child: Text('Multiple screen scaffold example'),
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -54,11 +54,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 RaisedButton(
-                  child: Text('Multi screen scaffold using body example'),
+                  child: Text('Multiple screen scaffold using body example'),
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => MultipleScreensScaffoldBodyScreen(),
+                    ),
+                  ),
+                ),
+                RaisedButton(
+                  child: Text('Multiple screen hinge example'),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MultipleScreensHinge(),
                     ),
                   ),
                 ),
@@ -172,7 +181,8 @@ class MultipleScreensMethodsScreen extends StatefulWidget {
       _MultipleScreensMethodsScreenState();
 }
 
-class _MultipleScreensMethodsScreenState extends State<MultipleScreensMethodsScreen> {
+class _MultipleScreensMethodsScreenState
+    extends State<MultipleScreensMethodsScreen> {
   bool _isMultipleScreensDevice;
   bool _isAppSpanned;
   bool _isAppSpannedStream = false;
@@ -191,7 +201,7 @@ class _MultipleScreensMethodsScreenState extends State<MultipleScreensMethodsScr
 
     if (!mounted) return;
 
-  setState(() {
+    setState(() {
       _isMultipleScreensDevice = isMultiDevice;
       _isAppSpanned = isAppSpanned;
     });
@@ -246,7 +256,8 @@ class MultipleScreensScaffoldScreen extends StatefulWidget {
       _MultipleScreensScaffoldScreenState();
 }
 
-class _MultipleScreensScaffoldScreenState extends State<MultipleScreensScaffoldScreen> {
+class _MultipleScreensScaffoldScreenState
+    extends State<MultipleScreensScaffoldScreen> {
   bool _isAppSpannedStream = false;
 
   @override
@@ -268,8 +279,9 @@ class _MultipleScreensScaffoldScreenState extends State<MultipleScreensScaffoldS
 class MultipleScreensScaffoldScreenNavigationExampleFirstScreen
     extends StatefulWidget {
   @override
-  _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState createState() =>
-      _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState();
+  _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState
+      createState() =>
+          _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState();
 }
 
 class _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState
@@ -296,8 +308,9 @@ class _MultipleScreensScaffoldScreenNavigationExampleFirstScreenState
 class MultipleScreensScaffoldScreenNavigationExampleSecondScreen
     extends StatefulWidget {
   @override
-  _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState createState() =>
-      _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState();
+  _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState
+      createState() =>
+          _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState();
 }
 
 class _MultipleScreensScaffoldScreenNavigationExampleSecondScreenState
@@ -356,5 +369,100 @@ class _MultipleScreensScaffoldBodyScreenState
         child: Text('Example text'),
       ),
     );
+  }
+}
+
+class MultipleScreensHinge extends StatefulWidget {
+  final bool isAppSpannedStream;
+
+  const MultipleScreensHinge({
+    Key key,
+    this.isAppSpannedStream,
+  }) : super(key: key);
+
+  @override
+  _MultipleScreensHingeState createState() => _MultipleScreensHingeState();
+}
+
+class _MultipleScreensHingeState extends State<MultipleScreensHinge> {
+  bool _isAppSpannedStream = false;
+
+  @override
+  void initState() {
+    super.initState();
+    MultipleScreensMethods.isAppSpannedStream().listen(
+      (data) => setState(() => _isAppSpannedStream = data),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) => MultipleScreensScaffold(
+        appSpanned: _isAppSpannedStream,
+        left: MultipleScreensHingeExampleFirstScreen(),
+        right: MultipleScreensHingeExampleSecondScreen(),
+      );
+}
+
+class MultipleScreensHingeExampleFirstScreen extends StatefulWidget {
+  @override
+  _MultipleScreensHingeExampleFirstScreenState createState() =>
+      _MultipleScreensHingeExampleFirstScreenState();
+}
+
+class _MultipleScreensHingeExampleFirstScreenState
+    extends State<MultipleScreensHingeExampleFirstScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First example'),
+      ),
+      body: Center(child: Text('Span the app the get hinge angle')),
+    );
+  }
+}
+
+class MultipleScreensHingeExampleSecondScreen extends StatefulWidget {
+  @override
+  _MultipleScreensHingeExampleSecondScreenState createState() =>
+      _MultipleScreensHingeExampleSecondScreenState();
+}
+
+class _MultipleScreensHingeExampleSecondScreenState
+    extends State<MultipleScreensHingeExampleSecondScreen> {
+  Hinge _hinge; 
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second example'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RaisedButton(
+              child: Text('Get hinge'),
+              onPressed: () => _getHinge(),
+            ),
+            SizedBox(height: 8),
+            Text('Angle: ${_hinge?.angle}'),
+            SizedBox(height: 8),
+            Text('Accuracy: ${_hinge?.accuracy}'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _getHinge() async {
+    var hinge = await MultipleScreensMethods.getHinge;
+
+    if (!mounted) return;
+
+    setState(() {
+      _hinge = hinge;
+    });
   }
 }
