@@ -50,7 +50,6 @@ class MultipleScreensPlugin :
     private var hingeAngleSensor: Sensor? = null
     private var sensorListener: SensorEventListener? = null
     private var hinge: Hinge = Hinge()
-    private var angle: Int = 0
 
     fun registerPlugin(context: Context?, messenger: BinaryMessenger?) {
         this.context = context
@@ -165,7 +164,6 @@ class MultipleScreensPlugin :
         sensorListener = object : SensorEventListener {
             override fun onSensorChanged(event: SensorEvent) {
                 if (event.sensor == hingeAngleSensor) {
-                    angle = event.values[0].toInt()
                     hinge.angle = event.values[0].toInt()
                 }
             }

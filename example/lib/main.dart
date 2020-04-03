@@ -411,32 +411,13 @@ class MultipleScreensHingeExampleFirstScreen extends StatefulWidget {
 
 class _MultipleScreensHingeExampleFirstScreenState
     extends State<MultipleScreensHingeExampleFirstScreen> {
+  Hinge _hinge;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('First example'),
-      ),
-      body: Center(child: Text('Span the app the get hinge angle')),
-    );
-  }
-}
-
-class MultipleScreensHingeExampleSecondScreen extends StatefulWidget {
-  @override
-  _MultipleScreensHingeExampleSecondScreenState createState() =>
-      _MultipleScreensHingeExampleSecondScreenState();
-}
-
-class _MultipleScreensHingeExampleSecondScreenState
-    extends State<MultipleScreensHingeExampleSecondScreen> {
-  Hinge _hinge; 
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second example'),
       ),
       body: Center(
         child: Column(
@@ -464,5 +445,26 @@ class _MultipleScreensHingeExampleSecondScreenState
     setState(() {
       _hinge = hinge;
     });
+  }
+}
+
+class MultipleScreensHingeExampleSecondScreen extends StatefulWidget {
+  @override
+  _MultipleScreensHingeExampleSecondScreenState createState() =>
+      _MultipleScreensHingeExampleSecondScreenState();
+}
+
+class _MultipleScreensHingeExampleSecondScreenState
+    extends State<MultipleScreensHingeExampleSecondScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second example'),
+      ),
+      body: Center(
+        child: Text('Second screen'),
+      ),
+    );
   }
 }

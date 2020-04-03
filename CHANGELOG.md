@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+* Added hinge support
+
 ## 0.2.0 26th Match 2020 - Project rename
 
 * Project renamed from `dual_screen` to `multiple_screens`
