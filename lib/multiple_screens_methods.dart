@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:multiple_screens/models/hinge.dart';
 
 /// The entry point for accessing multiple screens methods
 class MultipleScreensMethods {
@@ -22,5 +24,11 @@ class MultipleScreensMethods {
     yield* _eventChannel
         .receiveBroadcastStream()
         .map<bool>((dynamic result) => result);
+  }
+
+  static Future<Hinge> get getHinge async {
+    var hingeJson = await _methodChannel.invokeMethod('getHinge');
+    var hinge = Hinge.fromJson(json.decode(hingeJson));
+    return hinge;
   }
 }

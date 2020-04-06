@@ -10,16 +10,16 @@ A Flutter plugin to determine whether the device supports multiple screens and w
 
 Determine whether the app is run on a multiple screen device
 
-```bool isMultipleDevice = await MultipleScreens.isMultipleScreensDevice;```
+```bool isMultipleDevice = await MultipleScreensMethods.isMultipleScreensDevice;```
 
 Determine whether the app is currently spanned across both screens
 
-```bool isAppSpanned = await MultipleScreens.isAppSpanned;```
+```bool isAppSpanned = await MultipleScreensMethods.isAppSpanned;```
 
 Subscribing to app spanned across both screen stream
 
 ```dart
-MultipleScreens.isAppSpannedStream().listen(
+MultipleScreensMethods.isAppSpannedStream().listen(
   (data) => setState(() => _isAppSpannedStream = data)
 );
 ```
@@ -38,6 +38,10 @@ MultipleScreensScaffold(
   body
 )
 ```
+
+Get hinge details (angle and accuracy) on a multiple screen device
+
+```Hinge hinge = await MultipleScreensMethods.getHinge;```
 
 ## Getting Started
 
