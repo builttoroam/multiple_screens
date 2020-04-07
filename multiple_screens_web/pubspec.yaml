@@ -1,0 +1,26 @@
+name: multiple_screens_web
+description: 
+  Flutter web plugin for determing whether the device supports multiple screens and
+  whether the app is currently spanned across both screen
+version: 0.0.1
+homepage: https://github.com/builttoroam/multiple_screens
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      web:
+        pluginClass: MultipleScreensWeb
+        fileName: multiple_screens_web.dart
