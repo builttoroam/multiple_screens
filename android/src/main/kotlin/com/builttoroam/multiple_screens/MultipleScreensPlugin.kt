@@ -13,7 +13,7 @@ import androidx.annotation.NonNull
 import com.builttoroam.multiple_screens.models.Hinge
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.microsoft.device.display.DisplayMask
+import com.microsoft.device.dualscreen.layout.ScreenHelper
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -35,7 +35,6 @@ class MultipleScreensPlugin :
     ActivityAware {
     private val METHOD_CHANNEL_NAME = "plugins.builttoroam.com/multiple_screens/methods"
     private val EVENT_CHANNEL_NAME = "plugins.builttoroam.com/multiple_screens/events"
-    private val DISPLAY_MASK_SYSTEM_FEATURE = "com.microsoft.device.display.displaymask"
     private val IS_MULTIPLE_SCREENS_DEVICE = "isMultipleScreensDevice"
     private val IS_APP_SPANNED = "isAppSpanned"
     private val GET_HINGE = "getHinge"
@@ -125,26 +124,11 @@ class MultipleScreensPlugin :
     }
 
     private fun isMultipleScreensDevice(): Boolean {
-        val packageManager = context?.packageManager
-        if (packageManager != null) {
-            return packageManager.hasSystemFeature(
-                DISPLAY_MASK_SYSTEM_FEATURE
-            )
-        }
-        return false
+        return ScreenHelper.isDeviceSurfaceDuo(activity ?: return false)
     }
 
     fun isAppSpanned(): Boolean {
-        if (isMultipleScreensDevice()) {
-            val bounding = DisplayMask.fromResourcesRectApproximation(activity).boundingRects
-            if (bounding.isEmpty()) {
-                return false
-            }
-            val drawingRect = android.graphics.Rect()
-            activity?.window?.decorView?.rootView?.getDrawingRect(drawingRect)
-            return bounding.first().intersect(drawingRect)
-        }
-        return false
+        return ScreenHelper.isDualMode(activity ?: return false)
     }
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
