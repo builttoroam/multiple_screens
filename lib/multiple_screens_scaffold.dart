@@ -85,14 +85,41 @@ class _MultipleScreensScaffoldState extends State<MultipleScreensScaffold> {
       body: widget.body != null
           ? widget.body
           : widget.appSpanned
-              ? Row(
-                  children: [
-                    Expanded(flex: 1, child: widget.left),
-                    SizedBox(width: Constants.hingeWidth),
-                    Expanded(flex: 1, child: widget.right),
-                  ],
-                )
+              ? _SpannedFlex(left: widget.left, right: widget.right)
               : widget.left,
+    );
+  }
+}
+
+class _SpannedFlex extends StatelessWidget {
+  final Widget left;
+  final Widget right;
+
+  const _SpannedFlex({
+    Key key,
+    this.left,
+    this.right,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
+
+    final direction = orientation == Orientation.landscape
+        ? Axis.horizontal
+        : Axis.vertical;
+
+    final hinge = orientation == Orientation.landscape
+        ? SizedBox(width: Constants.hingeWidth)
+        : SizedBox(height: Constants.hingeWidth);
+
+    return Flex(
+      direction: direction,
+      children: [
+        Expanded(flex: 1, child: left),
+        hinge,
+        Expanded(flex: 1, child: right),
+      ],
     );
   }
 }
