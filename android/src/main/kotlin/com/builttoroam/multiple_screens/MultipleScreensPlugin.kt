@@ -53,8 +53,11 @@ class MultipleScreensPlugin :
 
     fun registerPlugin(context: Context?, messenger: BinaryMessenger?) {
         this.context = context
-        MethodChannel(messenger, METHOD_CHANNEL_NAME).setMethodCallHandler(this)
-        EventChannel(messenger, EVENT_CHANNEL_NAME).setStreamHandler(this)
+        this.methodChannel = MethodChannel(messenger, METHOD_CHANNEL_NAME)
+        this.methodChannel.setMethodCallHandler(this)
+        this.eventChannel = EventChannel(messenger, EVENT_CHANNEL_NAME)
+        this.eventChannel.setStreamHandler(this)
+
         gson = GsonBuilder().create()
         setupSensors()
     }
